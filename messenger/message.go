@@ -19,7 +19,7 @@ type message struct {
 	Timestamp time.Time
 }
 
-// NewMessage func
+// NewMessage returns a new instance of Message
 func NewMessage(clientID, requestID string, body []byte) Message {
 	return &message{
 		ID:        "123",
