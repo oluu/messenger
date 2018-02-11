@@ -1,6 +1,10 @@
 package messenger
 
-import "github.com/Shopify/sarama"
+import (
+	"encoding/json"
+
+	"github.com/Shopify/sarama"
+)
 
 // Producer implements sarama.AsyncProducer
 type Producer struct {
@@ -52,10 +56,16 @@ func (p *Producer) Close() {
 
 // Publish handles sending the message to the producer queue. message is the value sent and topic is the destination
 // topic the message is sent to.
-func (p *Producer) Publish(message, topic string) {
+func (p *Producer) Publish(message Message, topic string) error {
+	messageBytes, err := json.Marshal(message)
+	if err != nil {
+		return err
+	}
 	producerMessage := &sarama.ProducerMessage{
 		Topic: topic,
-		Value: sarama.StringEncoder(message),
+		Key:   sarama.StringEncoder(message.GetID()),
+		Value: sarama.ByteEncoder(messageBytes),
 	}
 	p.producer.Input() <- producerMessage
+	return nil
 }
