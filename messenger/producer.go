@@ -53,6 +53,9 @@ func (p *Producer) Close() {
 // Publish handles sending the message to the producer queue. message is the value sent and topic is the destination
 // topic the message is sent to.
 func (p *Producer) Publish(message, topic string) {
-	producerMessage := &sarama.ProducerMessage{Topic: topic, Value: sarama.StringEncoder(message)}
+	producerMessage := &sarama.ProducerMessage{
+		Topic: topic,
+		Value: sarama.StringEncoder(message),
+	}
 	p.producer.Input() <- producerMessage
 }
