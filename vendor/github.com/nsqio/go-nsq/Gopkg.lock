@@ -6,15 +6,9 @@
   packages = ["."]
   revision = "d9eb7a3d35ec988b8585d4a0068e462c27d28380"
 
-[[projects]]
-  branch = "master"
-  name = "github.com/nsqio/go-nsq"
-  packages = ["."]
-  revision = "8c1ff52dff6fd3ecc19c418649bc643b18e862fc"
-
 [solve-meta]
   analyzer-name = "dep"
   analyzer-version = 1
-  inputs-digest = "61da3dedb76f60212f49f971fee137525914a46742a733455e89bf5df3ae7546"
+  inputs-digest = "eeb528388b932e0b4fd05a24243101a7d731edd504d0c247c620f9d949a29318"
   solver-name = "gps-cdcl"
   solver-version = 1
